@@ -23,8 +23,8 @@ angular.module('greenfield.main', [])
       }]
     }]
 
-    var myLayer = L.mapbox.featureLayer().addTo(map);
-    myLayer.setGeoJSON(geojson);
+    var venueLayer = L.mapbox.featureLayer().addTo(map);
+    venueLayer.setGeoJSON(geojson);
 
     $scope.message = '';
 
