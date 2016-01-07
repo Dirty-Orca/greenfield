@@ -2,7 +2,7 @@ angular.module('greenfield.main', [])
   .controller('mainController', function($scope, main) {
 
     //KEY
-    L.mapbox.accessToken = 'KEY';
+    L.mapbox.accessToken = MAP_KEY;
 
     //instantiate new map
     var map = L.mapbox.map('map', 'mapbox.streets', {
