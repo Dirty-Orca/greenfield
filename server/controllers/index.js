@@ -6,9 +6,10 @@ module.exports = {
       models.test.get(req, res);
     }
   }, 
-  map: {
-    get: function(req, res) {
-      models.map.get(req, res);
+
+  search: {
+    post: function(req, res) {
+      models.test.post(req, res)
     }
   }
 }

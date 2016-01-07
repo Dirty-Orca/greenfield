@@ -4,8 +4,8 @@ module.exports = {
       res.status(200).end();
     }
   }, 
-  map: {
-    get: functino(req, res) {
+  search: {
+    post: function(req, res) {
       //stuff
     }
   }
