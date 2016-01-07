@@ -1,6 +1,6 @@
 angular.module('greenfield.search', [])
 
-  .controller('searchController', function($scope, $log, $http){
+  .controller('searchController', function($scope, $log, $http, main){
     
     $scope.search = {};//defining the object and properties ahead of time ensures they are in the correct order for the API request
 
@@ -22,7 +22,8 @@ angular.module('greenfield.search', [])
       }).then(function(res){
         stuff.city = res.data.results[0].address_components[1].long_name;
         //here is where you pass the stuff to ben.
-        $log.info(stuff);
+        main.mapRequest(stuff);
+        //
       })
     }
 
