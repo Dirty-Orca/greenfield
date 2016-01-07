@@ -1,14 +1,16 @@
 angular.module('greenfield.main', [])
   .controller('mainController', function($scope, main) {
 
-    //instantiate new map
+    //KEY
     L.mapbox.accessToken = 'pk.eyJ1IjoiYmJhbGFyYW4iLCJhIjoiUmt5TlVjayJ9.1AYg44v3_Bg1XUQ6-5dGAw';
 
+    //instantiate new map
     var map = L.mapbox.map('map', 'mapbox.streets', {
       scrollWheelZoom: false
     }).setView([38.8929, -77.0252], 14);
 
-    //render point
+    //render point on map
+    //hard-coded json data
     var geojson = [{
       "type": "FeatureCollection",
       "features": [{
@@ -22,7 +24,8 @@ angular.module('greenfield.main', [])
         }
       }]
     }]
-
+    
+    //generates map layer
     var venueLayer = L.mapbox.featureLayer().addTo(map);
     venueLayer.setGeoJSON(geojson);
 
@@ -32,4 +35,5 @@ angular.module('greenfield.main', [])
       console.log(data.statusText);
       $scope.message = data.statusText;
     });
+
   });
