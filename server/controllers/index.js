@@ -5,5 +5,11 @@ module.exports = {
     get: function(req, res) {
       models.test.get(req, res);
     }
+  }, 
+
+  search: {
+    post: function(req, res) {
+      models.search.post(req, res);
+    }
   }
 }
