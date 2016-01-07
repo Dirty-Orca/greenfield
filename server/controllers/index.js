@@ -5,5 +5,10 @@ module.exports = {
     get: function(req, res) {
       models.test.get(req, res);
     }
+  }, 
+  map: {
+    get: function(req, res) {
+      models.map.get(req, res);
+    }
   }
 }
