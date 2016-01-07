@@ -9,7 +9,7 @@ module.exports = {
 
   search: {
     post: function(req, res) {
-      models.test.post(req, res)
+      models.search.post(req, res);
     }
   }
 }
