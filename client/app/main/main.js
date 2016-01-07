@@ -2,7 +2,7 @@ angular.module('greenfield.main', [])
   .controller('mainController', function($scope, main) {
 
     //KEY
-    L.mapbox.accessToken = 'pk.eyJ1IjoiYmJhbGFyYW4iLCJhIjoiUmt5TlVjayJ9.1AYg44v3_Bg1XUQ6-5dGAw';
+    L.mapbox.accessToken = 'KEY';
 
     //instantiate new map
     var map = L.mapbox.map('map', 'mapbox.streets', {
@@ -24,7 +24,7 @@ angular.module('greenfield.main', [])
         }
       }]
     }]
-    
+
     //generates map layer
     var venueLayer = L.mapbox.featureLayer().addTo(map);
     venueLayer.setGeoJSON(geojson);
