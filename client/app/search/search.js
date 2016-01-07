@@ -4,7 +4,7 @@ angular.module('greenfield.search', [])
     
     $scope.search = {};//defining the object and properties ahead of time ensures they are in the correct order for the API request
 
-    $scope.search.city = '';
+    $scope.search.zip = '';
 
     $scope.state = ''
 

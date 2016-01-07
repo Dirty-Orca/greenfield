@@ -1,7 +1,7 @@
 <div id='container'>
   <form novalidate name = "inputForm"><!--removes native form validation-->
-    <label for = "city">Zipcode:</label> <!--making a label using the id allows users to switch control to the input by clicking City:-->
-      <input type = "number" class = "formInput" id = "city" ng-model = "search.city" required name = "city"/>
+    <label for = "zip">Zipcode:</label> <!--making a label using the id allows users to switch control to the input by clicking zip:-->
+      <input type = "text" class = "formInput" id = "zip" ng-model = "search.zip" required name = "zip" ng-minlength = 5 ng-maxlength = 5 />
       <select ng-model = "search.state">
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
@@ -60,8 +60,13 @@
       <input type = "date" class = "formInput" id = "fromDate" ng-model = "search.fromDate" />  <input type = "date" class = "formInput" ng-model = "search.toDate"/>
     <br/>
     <input type = "submit" ng-click = "format(search)"/>
-    <div ng-messages = "inputForm.city.$error" role = "alert">
-      <div ng-message = "required">Please enter a zipcode</div> <!--finds form sections marked as required and shows this message when they are empty-->
+    <div ng-messages = "inputForm.zip.$error" role = "alert">
+      <div ng-message = "required">
+        Please enter a zipcode
+      </div> <!--finds form sections marked as required and shows this message when they are empty-->
+      <div ng-message = "minlength, maxlength">
+        Please enter a valid 5 digit zipcode
+      </div>
     </div>
   </form>
 </div>
