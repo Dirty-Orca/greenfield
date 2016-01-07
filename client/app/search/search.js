@@ -12,7 +12,7 @@ angular.module('greenfield.search', [])
 
     $scope.search.toDate = '';
 
-    $scope.format = function(stuff){
+    $scope.format = function(stuff){// when the time comes to pass this stuff to ben, reset this function to contain two inner functions, one that reformats everything, and a second that passes off the data to his function
       $log.info(stuff)
       stuff.formattedToDate = "" + stuff.toDate.getFullYear() + "-" + (stuff.toDate.getMonth() + 1) + "-" + stuff.toDate.getDate()
       stuff.formattedFromDate = "" + stuff.fromDate.getFullYear() + "-" + (stuff.fromDate.getMonth() + 1) + "-" + stuff.fromDate.getDate()
