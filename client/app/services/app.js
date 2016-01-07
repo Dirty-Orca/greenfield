@@ -18,7 +18,7 @@ angular.module('greenfield.services', [])
     //   url : '/api/search',
     //   data : 'http://api.bandsintown.com/events/search?location=' + obj.city + ',' + obj.state + '&radius=10&format=json&date=' + obj.toDate + ',' + obj.fromDate + '(inclusive range)&app_id=mapit'
     // })
-    $log.info("made it", obj)
+$log.info('http://api.bandsintown.com/events/search?location=' + obj.city + ',' + obj.state + '&radius=10&format=json&' + obj.toDate + ',' + obj.fromDate + '(inclusive range)&app_id=mapit')
   }
 
   return {
