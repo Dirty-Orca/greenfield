@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Dirty-Orca/greenfield.git",
   "dependencies": {
+    "angular-messages": "^1.4.8",
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
     "jquery": "^2.1.4",
