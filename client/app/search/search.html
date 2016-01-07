@@ -1,0 +1,14 @@
+<div id='container'>
+  <form novalidate name = "inputForm"><!--removes native form validation-->
+    <label for = "loc">Location:</label> <!--making a label using the id allows users to switch control to the input by clicking Location:-->
+      <input type = "text" class = "formInput" id = "loc" ng-model = "search.loc" required name = "loc"/>
+    <br/>
+    <label for = "fromDate"> Date Range: </label>
+      <input type = "date" class = "formInput" id = "fromDate" ng-model = "search.fromDate">  <input type = "date" class = "formInput" ng-model = "search.toDate">
+    <br/>
+    <input type = "submit" ng-click = "someFunction(search)"/>
+    <div ng-messages = "inputForm.loc.$error" role = "alert">
+      <div ng-message = "required">Please enter a location</div> <!--finds form sections marked as required and shows this message when they are empty-->
+    </div>
+  </form>
+</div>
