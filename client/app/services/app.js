@@ -12,8 +12,6 @@ angular.module('greenfield.services', [])
       });
   };
 
-
-
   return {
     get : get
   };

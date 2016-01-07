@@ -6,7 +6,7 @@ angular.module('greenfield.main', [])
 
     //instantiate new map
     var map = L.mapbox.map('map', 'mapbox.streets', {
-      scrollWheelZoom: false
+      scrollWheelZoom: true
     }).setView([38.8929, -77.0252], 14);
 
     //render point on map
