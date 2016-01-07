@@ -1,4 +1,4 @@
-angular.module('greenfield.main', [])
+git histangular.module('greenfield.main', [])
   .controller('mainController', function($scope, main) {
 
     //KEY
