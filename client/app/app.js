@@ -2,6 +2,7 @@ angular.module('greenfield', [
     'greenfield.services',
     'greenfield.main',
     'greenfield.search',
+    'greenfield.userEvents',
     'ngRoute',
     'ngMessages'//form validation in search.html
   ])
@@ -15,10 +16,10 @@ angular.module('greenfield', [
         templateUrl: "app/search/search.html",
         controller: "searchController"
       })
-      // .when('user_events',{ //maybe not this name, it's ugly
-      //   templateUrl: "app/user_events/user_events.html",
-      //   controller: "user_eventsController"
-      // })
+      .when('/userEvents',{ //maybe not this name, it's ugly
+        templateUrl: "app/userEvents/userEvents.html",
+        controller: "userEventsController"
+      })
       // .when('/login', {
       //   templateUrl: "app/login/login.html",
       //   controller: "loginController"
