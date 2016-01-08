@@ -1,6 +1,6 @@
 angular.module('greenfield.search', [])
 
-  .controller('searchController', function($scope, $log, $http){
+  .controller('searchController', function($scope, $log, $http, main){
     
     $scope.search = {};//defining the object and properties ahead of time ensures they are in the correct order for the API request
 
@@ -20,9 +20,12 @@ angular.module('greenfield.search', [])
         method: "GET",
         url: "http://maps.googleapis.com/maps/api/geocode/json?address=" + stuff.zip
       }).then(function(res){
-        stuff.city = res.data.results[0].address_components[1].long_name;
+        $log.info(res)
+        stuff.city = res.data.results[0].address_components[2].long_name;
+        stuff.state = res.data.results[0].address_components[4].short_name;//fix DC edgecase by using slice two spaces after the comma in the formatted address field
         //here is where you pass the stuff to ben.
-        $log.info(stuff);
+        main.mapRequest(stuff);
+        //
       })
     }
 

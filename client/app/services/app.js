@@ -1,6 +1,6 @@
 angular.module('greenfield.services', [])
 
-.factory('main', function($http) {
+.factory('main', function($http, $log) {
 
   var get = function() {
     return $http({
@@ -13,11 +13,12 @@ angular.module('greenfield.services', [])
   };
 
   var mapRequest = function(obj){
-    return $http({
-      method: 'POST',
-      url : '/api/search',
-      data : 'http://api.bandsintown.com/events/search?location=' + obj.city + ',' + obj.state + '&radius=10&format=json&date=' + obj.toDate + ',' + obj.fromDate + '(inclusive range)&app_id=mapit'
-    })
+    // return $http({
+    //   method: 'POST',
+    //   url : '/api/search',
+    //   data : 'http://api.bandsintown.com/events/search?location=' + obj.city + ',' + obj.state + '&radius=10&format=json&date=' + obj.toDate + ',' + obj.fromDate + '(inclusive range)&app_id=mapit'
+    // })
+$log.info('http://api.bandsintown.com/events/search?location=' + obj.city + ',' + obj.state + '&radius=10&format=json&' + obj.toDate + ',' + obj.fromDate + '(inclusive range)&app_id=mapit')
   }
 
   return {
