@@ -16,4 +16,12 @@ On this post request, the route will
 
 router.post("/search", controllers.search.post);
 
+router.post("/user", controllers.user.post);
+
+router.post("/event", controllers.event.post);
+
+router.post("/venue", controllers.venue.post);
+
+router.get("/venue", controllers.venue.post);
+
 module.exports = router;
