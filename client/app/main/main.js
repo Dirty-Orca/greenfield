@@ -1,6 +1,6 @@
 angular.module('greenfield.main', [])
-  .controller('mainController', function($scope, main) {
-
+  .controller('mainController', function($scope, $routeParams, main) {
+    console.log($routeParams);
     //KEY
     L.mapbox.accessToken = "pk.eyJ1IjoiYmJhbGFyYW4iLCJhIjoiUmt5TlVjayJ9.1AYg44v3_Bg1XUQ6-5dGAw";
 
