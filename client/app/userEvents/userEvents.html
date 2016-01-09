@@ -1,7 +1,8 @@
 <div>
   <div ng-repeat="event in user.events">
-    <h2>Band Name<h2>
-    <h4>Some Date</h4>
-    <h3>Venue</h3> - <a href="ticketurl.com"> Buy Tickets</a>
+    <h2>Band Name: {{event.Artist}}<h2>
+    <h4>{{event.date_time}}</h4>
+    <h3>Venue: {{event.name}}</h3> - <a ng-href={{event.ticket_url}}> Buy Tickets</a>
   </div>
 </div>
+<!--need to hold on to user ID somewhere because that is what being passed back and forth to get data-->
