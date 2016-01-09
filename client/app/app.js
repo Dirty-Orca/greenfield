@@ -10,7 +10,7 @@ angular.module('greenfield', [
     $routeProvider
       .when('/', {
         templateUrl: 'app/main/main.html',
-        controller: 'mainController'
+        controller: 'mainController'  
       })
       .when('/search', {
         templateUrl: "app/search/search.html",
