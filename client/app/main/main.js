@@ -1,22 +1,23 @@
 angular.module('greenfield.main', ['leaflet-directive'])
   .controller('BasicCenterController', ['$scope', function($scope) {
-  var mapItems = [{
-    name: 'Blackwall Hitch',
-    b_venue_id: 3051563,
-    lat: 38.8047222,
-    lon: -77.0472222,
-    events: [{
-      b_event_id: 10786327,
-      url: "http://www.bandsintown.com/event/10786327/buy_tickets?app_id=mapit&came_from=233",
-      datetime: "2016-01-07T09:00:00",
-      artists: [{
-        "name": "Darcy Dawn & Company",
-        "url": "http://www.bandsintown.com/DarcyDawnAndCompany"
+    var mapItems = [{
+      name: 'Blackwall Hitch',
+      b_venue_id: 3051563,
+      lat: 38.8047222,
+      lon: -77.0472222,
+      events: [{
+        b_event_id: 10786327,
+        url: "http://www.bandsintown.com/event/10786327/buy_tickets?app_id=mapit&came_from=233",
+        datetime: "2016-01-07T09:00:00",
+        artists: [{
+          "name": "Darcy Dawn & Company",
+          "url": "http://www.bandsintown.com/DarcyDawnAndCompany"
+        }]
+
       }]
 
     }]
 
-  }]
     var mainMarker = {
       lat: mapItems[0].lat,
       lng: mapItems[0].lon,
@@ -28,7 +29,7 @@ angular.module('greenfield.main', ['leaflet-directive'])
       center: {
         lat: mapItems[0].lat,
         lng: mapItems[0].lon,
-        zoom: 8
+        zoom: 10
       },
       markers: {
         mainMarker: angular.copy(mainMarker)
@@ -37,14 +38,21 @@ angular.module('greenfield.main', ['leaflet-directive'])
         lat: mapItems[0].lat,
         lng: mapItems[0].lon
       },
-      events: {
+      layers: {
+        baselayers: {
+          osm: {
+            name: 'CartoDB',
+            url: 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
+            type: 'xyz'
+          }
+        }
       }
+
+
+
     });
 
-    $scope.$on("leafletDirectiveMarker.dragend", function(event, args) {
-      $scope.position.lat = args.model.lat;
-      $scope.position.lng = args.model.lng;
-    })
+
   }])
 
 
