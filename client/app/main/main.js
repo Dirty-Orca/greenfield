@@ -46,11 +46,9 @@ angular.module('greenfield.main', [])
           }]
         });
 
-    $scope.message = '';
-
     main.get().then(function(data) {
       console.log(data.statusText);
-      $scope.message = data.statusText;
+      //$scope.message = data.statusText;
     });
 
   });
