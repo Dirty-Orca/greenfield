@@ -22,6 +22,10 @@ router.post("/event", controllers.event.post);
 
 router.post("/venue", controllers.venue.post);
 
-router.get("/venue", controllers.venue.post);
+router.get("/userEvents/:id", controllers.userEvents.get);
+
+router.post("/userEvents", controllers.userEvents.post);
+
+router.delete("/userEvents", controllers.userEvents.delete);
 
 module.exports = router;

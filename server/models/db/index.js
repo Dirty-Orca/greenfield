@@ -13,4 +13,16 @@ connection.connect({
   if (err) throw (err);
 });
 
+var queryHelper = function(sql, params, res) {
+  console.log(sql + ' - ' + params);
+  Connection.query(sql, params, function(err, results) {
+    if (err) {
+      throw (err);
+    }
+
+    callback(results);
+  });
+}
+
 module.exports = connection;
+module.exports = queryHelper;
