@@ -23,6 +23,7 @@ angular.module('greenfield.search', [])
         stuff.city = res.data.results[0].address_components[2].long_name;
         stuff.state = res.data.results[0].address_components[4].short_name;//fix DC edgecase by using slice two spaces after the comma in the formatted address field
         //here is where you pass the stuff to ben.
+        console.log(stuff);
         main.mapRequest(stuff);
         //
       })
