@@ -4,7 +4,6 @@ angular.module('greenfield.main', ['leaflet-directive'])
     var data = $location.search();
     //declare map maprkers
     $scope.markers = [];
-    console.log(data.mapData)
 
     for (var i = 0; i < data.mapData.data.length; i++) {
       marker = {
@@ -15,10 +14,8 @@ angular.module('greenfield.main', ['leaflet-directive'])
         events: data.mapData.data[i].events,
         message: data.mapData.data[i].name
       }
-      console.log(marker);
       $scope.markers.push(marker)
     };
-    console.log("MARKERS" + $scope.markers);
 
     //Set data variables for rendering venue information on click
     //"Could not load data" should not be displayed
@@ -30,6 +27,9 @@ angular.module('greenfield.main', ['leaflet-directive'])
 
     //extend scope to map objects and set defaults
     angular.extend($scope, {
+      defaults: {
+        minZoom: 8
+      },
       center: {
         lat: $scope.markers[0].lat,
         lng: $scope.markers[0].lng,
@@ -50,7 +50,6 @@ angular.module('greenfield.main', ['leaflet-directive'])
         }
       }
     });
-
     //displays event information when marker is clicked
     $scope.$on('leafletDirectiveMarker.click', function(e, args) {
       // references data by id in args
