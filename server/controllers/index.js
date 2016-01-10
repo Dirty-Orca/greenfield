@@ -15,7 +15,7 @@ module.exports = {
 
   search: {
     post: function(req, res) {
-      search(req.data, function(results) {
+      search(req.body, function(results) {
         res.send(results);
       });
     }
