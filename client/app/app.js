@@ -3,6 +3,7 @@ angular.module('greenfield', [
     'greenfield.main',
     'greenfield.search',
     'greenfield.userEvents',
+    'greenfield.login',
     'ngRoute',
     'ngMessages'//form validation in search.html
   ])
@@ -20,9 +21,9 @@ angular.module('greenfield', [
         templateUrl: "app/userEvents/userEvents.html",
         controller: "userEventsController"
       })
-      // .when('/login', {
-      //   templateUrl: "app/login/login.html",
-      //   controller: "loginController"
-      // }
+      .when('/login', {
+        templateUrl: "app/login/login.html",
+        controller: "loginController"
+      })
       .otherwise('/search');
   });
