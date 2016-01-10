@@ -34,7 +34,7 @@ var reArrange = function(body) {
   for (var i = 0; i < body.length; i++) {
     if (!newBody[body[i].venue.id]) {
       newBody[body[i].venue.id] = body[i].venue;
-      newBody[body[i]].venue.id].events = [];
+      newBody[body[i].venue.id].events = [];
     }
     newBody[body[i].venue.id].events.push({
       b_event_id: body[i].id,
