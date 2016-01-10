@@ -1,2 +1,18 @@
-    /*map styling*/
-    .map { position:absolute; top:125px; bottom:75px; left: 25%; }
+/*map styling*/
+.map {
+  position:absolute;
+  top:125px;
+  bottom:75px;
+  left: 25%;
+  width:50%;
+}
+/*style solely for testing, feel free to fuck this shit up*/
+.eventbox{
+  background-color: #00b359;
+  border-radius: 5px;
+  opacity: .80;
+  min-height : 250px;
+  margin-left: 20px;
+  margin-top: 20px;
+  border:2px solid black;
+}
