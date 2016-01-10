@@ -13,9 +13,8 @@ connection.connect({
   if (err) throw (err);
 });
 
-var queryHelper = function(sql, params, res) {
-  console.log(sql + ' - ' + params);
-  Connection.query(sql, params, function(err, results) {
+var queryHelper = function(sql, params, callback) {
+  connection.query(sql, params, function(err, results) {
     if (err) {
       throw (err);
     }
@@ -24,5 +23,5 @@ var queryHelper = function(sql, params, res) {
   });
 }
 
-module.exports = connection;
-module.exports = queryHelper;
+module.exports.connection = connection;
+module.exports.queryHelper = queryHelper;

@@ -14,7 +14,7 @@ var add = function(venueObj, callback) {
   ];
 
   var sql = 'INSERT INTO `venues` \
-            (`id, `url`, `name`, `city`, `region`, `country`, `latitude`, `longitude`) \
+            (`id`, `url`, `name`, `city`, `region`, `country`, `latitude`, `longitude`) \
               VALUES \
             (?, ?, ?, ?, ?, ?, ?, ?);'
 
