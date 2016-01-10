@@ -19,7 +19,10 @@ angular.module('greenfield.main', ['leaflet-directive'])
       }]
 
     }]
-
+    //Set data variables for rendering venue information on click
+    $scope.data = {};
+    $scope.data.showMarker = {name : 'pre-update'};
+    $scope.data.venue = 'pre-update';
     //processed dummy data
     $scope.mainMarker = {
       id: 0,
@@ -31,7 +34,6 @@ angular.module('greenfield.main', ['leaflet-directive'])
       
     };
 
-    $scope.data.showMarker = {name : 'pre-update'};
     //extend scope to map objects
     angular.extend($scope, {
       center: {
@@ -62,8 +64,8 @@ angular.module('greenfield.main', ['leaflet-directive'])
       // Args will contain the marker name and other relevant information
       var id = args.leafletEvent.target.options.id
       console.log(id);
-      $scope.data.showMarker = mapItems[0];
-      console.log($scope.data.showMarker.name);
+      $scope.data.showMarker = mapItems[0].events[0].artists;
+      console.log($scope.data.showMarker);
       $scope.reveal = true;
     });
 
