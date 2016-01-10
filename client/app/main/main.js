@@ -31,7 +31,7 @@ angular.module('greenfield.main', ['leaflet-directive'])
       
     };
 
-    $scope.showMarker = {name : 'pre-update'};
+    $scope.data.showMarker = {name : 'pre-update'};
     //extend scope to map objects
     angular.extend($scope, {
       center: {
@@ -62,8 +62,8 @@ angular.module('greenfield.main', ['leaflet-directive'])
       // Args will contain the marker name and other relevant information
       var id = args.leafletEvent.target.options.id
       console.log(id);
-      $scope.showMarker = mapItems[0];
-      console.log($scope.showMarker.name);
+      $scope.data.showMarker = mapItems[0];
+      console.log($scope.data.showMarker.name);
       $scope.reveal = true;
     });
 
