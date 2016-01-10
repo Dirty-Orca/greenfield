@@ -1,42 +1,44 @@
 angular.module('greenfield.main', ['leaflet-directive'])
-  .controller('BasicCenterController', ['$scope', function($scope) {
-    var mapItems = [{
-      name: 'Blackwall Hitch',
-      b_venue_id: 3051563,
-      lat: 38.8047222,
-      lon: -77.0472222,
-      events: [{
-        b_event_id: 10786327,
-        url: "http://www.bandsintown.com/event/10786327/buy_tickets?app_id=mapit&came_from=233",
-        datetime: "2016-01-07T09:00:00",
-        artists: [{
-          "name": "Darcy Dawn & Company",
-          "url": "http://www.bandsintown.com/DarcyDawnAndCompany"
-        }]
+  .controller('BasicCenterController', ['$scope', '$location', function($scope, $location) {
+    //set data to bandsintown content
+    var data = $location.search();
+    //declare map maprkers
+    $scope.markers = [];
+    console.log(data.mapData)
 
-      }]
-
-    }]
-
-    var mainMarker = {
-      lat: mapItems[0].lat,
-      lng: mapItems[0].lon,
-      focus: true,
-      message: mapItems[0].name,
+    for (var i = 0; i < data.mapData.data.length; i++) {
+      marker = {
+        id: i,
+        name: data.mapData.data[i].name,
+        lat: data.mapData.data[i].latitude,
+        lng: data.mapData.data[i].longitude,
+        events: data.mapData.data[i].events,
+        message: data.mapData.data[i].name
+      }
+      console.log(marker);
+      $scope.markers.push(marker)
     };
+    console.log("MARKERS" + $scope.markers);
 
+    //Set data variables for rendering venue information on click
+    //"Could not load data" should not be displayed
+    $scope.data = {};
+    $scope.data.showMarker = {
+      name: 'Could not load data'
+    };
+    $scope.data.venue = 'Could not load data';
+
+    //extend scope to map objects and set defaults
     angular.extend($scope, {
       center: {
-        lat: mapItems[0].lat,
-        lng: mapItems[0].lon,
-        zoom: 10
+        lat: $scope.markers[0].lat,
+        lng: $scope.markers[0].lng,
+        zoom: 12
       },
-      markers: {
-        mainMarker: angular.copy(mainMarker)
-      },
+      markers: $scope.markers,
       position: {
-        lat: mapItems[0].lat,
-        lng: mapItems[0].lon
+        lat: $scope.markers[0].lat,
+        lng: $scope.markers[0].lng
       },
       layers: {
         baselayers: {
@@ -47,9 +49,14 @@ angular.module('greenfield.main', ['leaflet-directive'])
           }
         }
       }
+    });
 
-
-
+    //displays event information when marker is clicked
+    $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+      // references data by id in args
+      var id = args.leafletEvent.target.options.id
+      $scope.data.showMarker = $scope.markers[id].events;
+      $scope.reveal = true;
     });
 
 

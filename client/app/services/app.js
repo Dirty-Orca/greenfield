@@ -18,6 +18,7 @@ angular.module('greenfield.services', [])
       url : '/api/search',
       data : obj
     }).then(function(resp){
+      
       $location.path('/').search({mapData : resp})
     })
   }
