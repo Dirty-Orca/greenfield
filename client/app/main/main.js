@@ -1,5 +1,7 @@
 angular.module('greenfield.main', ['leaflet-directive'])
-  .controller('BasicCenterController', ['$scope', function($scope) {
+  .controller('BasicCenterController', ['$scope', '$compile', function($scope) {
+
+    //dummy data
     var mapItems = [{
       name: 'Blackwall Hitch',
       b_venue_id: 3051563,
@@ -18,13 +20,19 @@ angular.module('greenfield.main', ['leaflet-directive'])
 
     }]
 
-    var mainMarker = {
+    //processed dummy data
+    $scope.mainMarker = {
+      id: 0,
       lat: mapItems[0].lat,
       lng: mapItems[0].lon,
       focus: true,
-      message: mapItems[0].name,
+      message: '<div>' + mapItems[0].name + '</div>',
+
+      
     };
 
+    $scope.showMarker = {name : 'pre-update'};
+    //extend scope to map objects
     angular.extend($scope, {
       center: {
         lat: mapItems[0].lat,
@@ -32,7 +40,7 @@ angular.module('greenfield.main', ['leaflet-directive'])
         zoom: 10
       },
       markers: {
-        mainMarker: angular.copy(mainMarker)
+        mainMarker: angular.copy($scope.mainMarker)
       },
       position: {
         lat: mapItems[0].lat,
@@ -47,9 +55,16 @@ angular.module('greenfield.main', ['leaflet-directive'])
           }
         }
       }
+    });
+    
 
-
-
+    $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+      // Args will contain the marker name and other relevant information
+      var id = args.leafletEvent.target.options.id
+      console.log(id);
+      $scope.showMarker = mapItems[0];
+      console.log($scope.showMarker.name);
+      $scope.reveal = true;
     });
 
 
