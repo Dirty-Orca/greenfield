@@ -1,6 +1,24 @@
 angular.module('greenfield.main', ['leaflet-directive'])
-  .controller('BasicCenterController', ['$scope', '$location', function($scope) {
+  .controller('BasicCenterController', ['$scope', '$location', function($scope, $location) {
+    //set data to bandsintown content
+    var data = $location.search();
+    //declare map maprkers
+    $scope.markers = [];
+    console.log(data.mapData)
 
+    for (var i = 0; i < data.mapData.data.length; i++) {
+     marker = {
+        id: i,
+        name: data.mapData.data[i].name,
+        lat: data.mapData.data[i].latitude,
+        lng: data.mapData.data[i].longitude,
+        events: data.mapData.data[i].events,
+        message : data.mapData.data[i].name
+      }
+      console.log(marker);
+      $scope.markers.push(marker)
+    };
+    console.log("MARKERS" + $scope.markers);
     //dummy data
     var mapItems = [{
         name: 'Blackwall Hitch',
@@ -29,11 +47,12 @@ angular.module('greenfield.main', ['leaflet-directive'])
 
       }]
       //Set data variables for rendering venue information on click
+      //"Could not load data" should not be displayed
     $scope.data = {};
     $scope.data.showMarker = {
-      name: 'pre-update'
+      name: 'Could not load data'
     };
-    $scope.data.venue = 'pre-update';
+    $scope.data.venue = 'Could not load data';
     //processed dummy data
     $scope.mainMarker = {
       id: 0,
@@ -48,16 +67,18 @@ angular.module('greenfield.main', ['leaflet-directive'])
     //extend scope to map objects
     angular.extend($scope, {
       center: {
-        lat: mapItems[0].lat,
-        lng: mapItems[0].lon,
-        zoom: 10
+        lat: $scope.markers[0].lat,
+        lng: $scope.markers[0].lng,
+        zoom: 12
       },
-      markers: {
-        mainMarker: angular.copy($scope.mainMarker)
-      },
+      markers: $scope.markers,
+      // {
+      //   mainMarker: angular.copy($scope.mainMarker)
+
+      // },
       position: {
-        lat: mapItems[0].lat,
-        lng: mapItems[0].lon
+        lat: $scope.markers[0].lat,
+        lng: $scope.markers[0].lng
       },
       layers: {
         baselayers: {
@@ -75,7 +96,7 @@ angular.module('greenfield.main', ['leaflet-directive'])
       // Args will contain the marker name and other relevant information
       var id = args.leafletEvent.target.options.id
       console.log(id);
-      $scope.data.showMarker = mapItems[id].events;
+      $scope.data.showMarker = $scope.markers[id].events;
       console.log($scope.data.showMarker[0].artists[0].name);
       $scope.reveal = true;
     });
