@@ -13,9 +13,9 @@ angular.module('greenfield.search', [])
     $scope.search.rawToDate = '';
 
     $scope.format = function(stuff){// when the time comes to pass this stuff to ben, reset this function to contain two inner functions, one that reformats everything, and a second that passes off the data to his function
-      stuff.toDate = "" + stuff.rawToDate.getFullYear() + "-" + (stuff.rawToDate.getMonth() + 1) + "-" + stuff.rawToDate.getDate()
-      stuff.fromDate = "" + stuff.rawFromDate.getFullYear() + "-" + (stuff.rawFromDate.getMonth() + 1) + "-" + stuff.rawFromDate.getDate()
-
+      console.log(stuff.rawToDate.getMonth());
+      stuff.toDate = "" + stuff.rawToDate.getFullYear() + "-0" + (stuff.rawToDate.getMonth() + 1) + "-" + stuff.rawToDate.getDate()
+      stuff.fromDate = "" + stuff.rawFromDate.getFullYear() + "-0" + (stuff.rawFromDate.getMonth() + 1) + "-" + stuff.rawFromDate.getDate()
       $http({
         method: "GET",
         url: "http://maps.googleapis.com/maps/api/geocode/json?address=" + stuff.zip

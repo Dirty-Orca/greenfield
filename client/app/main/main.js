@@ -1,27 +1,38 @@
 angular.module('greenfield.main', ['leaflet-directive'])
-  .controller('BasicCenterController', ['$scope', '$compile', function($scope) {
+  .controller('BasicCenterController', ['$scope', '$location', function($scope) {
 
     //dummy data
     var mapItems = [{
-      name: 'Blackwall Hitch',
-      b_venue_id: 3051563,
-      lat: 38.8047222,
-      lon: -77.0472222,
-      events: [{
-        b_event_id: 10786327,
-        url: "http://www.bandsintown.com/event/10786327/buy_tickets?app_id=mapit&came_from=233",
-        datetime: "2016-01-07T09:00:00",
-        artists: [{
-          "name": "Darcy Dawn & Company",
-          "url": "http://www.bandsintown.com/DarcyDawnAndCompany"
+        name: 'Blackwall Hitch',
+        b_venue_id: 3051563,
+        lat: 38.8047222,
+        lon: -77.0472222,
+        events: [{
+          b_event_id: 10786327,
+          url: "http://www.bandsintown.com/event/10786327/buy_tickets?app_id=mapit&came_from=233",
+          datetime: "2016-01-07T09:00:00",
+          artists: [{
+            "name": "Darcy Dawn & Company",
+            "url": "http://www.bandsintown.com/DarcyDawnAndCompany"
+          }]
+
+        }, {
+          b_event_id: 10786327,
+          url: "http://www.bandsintown.com/event/10786327/buy_tickets?app_id=mapit&came_from=233",
+          datetime: "2016-01-07T09:00:00",
+          artists: [{
+            "name": "Lucero",
+            "url": "http://www.bandsintown.com/Lucero"
+          }]
+
         }]
 
       }]
-
-    }]
-    //Set data variables for rendering venue information on click
+      //Set data variables for rendering venue information on click
     $scope.data = {};
-    $scope.data.showMarker = {name : 'pre-update'};
+    $scope.data.showMarker = {
+      name: 'pre-update'
+    };
     $scope.data.venue = 'pre-update';
     //processed dummy data
     $scope.mainMarker = {
@@ -31,7 +42,7 @@ angular.module('greenfield.main', ['leaflet-directive'])
       focus: true,
       message: '<div>' + mapItems[0].name + '</div>',
 
-      
+
     };
 
     //extend scope to map objects
@@ -58,14 +69,14 @@ angular.module('greenfield.main', ['leaflet-directive'])
         }
       }
     });
-    
+
 
     $scope.$on('leafletDirectiveMarker.click', function(e, args) {
       // Args will contain the marker name and other relevant information
       var id = args.leafletEvent.target.options.id
       console.log(id);
-      $scope.data.showMarker = mapItems[0].events[0].artists;
-      console.log($scope.data.showMarker);
+      $scope.data.showMarker = mapItems[id].events;
+      console.log($scope.data.showMarker[0].artists[0].name);
       $scope.reveal = true;
     });
 
