@@ -42,7 +42,7 @@ var remove = function(userId, eventId, callback) {
 
   var sql = 'DELETE FROM `users_events` where `user_id` = ? and `event_id` = ?;';
   db.queryHelper(sql, params, function(results) {
-    res.status(200).end();
+    callback(results);
   });
 }
 

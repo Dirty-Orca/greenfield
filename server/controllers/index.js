@@ -49,7 +49,7 @@ module.exports = {
 
   userEvents: {
     get: function(req, res) {
-      var userId = req.body.user_id;
+      var userId = req.params.id;
       userEvents.get(userId, function(results) {
         res.json(results);
       });
@@ -58,7 +58,7 @@ module.exports = {
     post: function(req, res) {
       var userId = req.body.user_id;
       var eventId = req.body.event_id;
-      userEvents.add(userId,eventId, function(results) {
+      userEvents.add(userId, eventId, function(results) {
         res.json(results);
       });
     },
@@ -66,10 +66,10 @@ module.exports = {
     delete: function(req, res) {
       var userId = req.body.user_id;
       var eventId = req.body.event_id;
-      userEvents.add(userId,eventId, function(results) {
+      userEvents.remove(userId, eventId, function(results) {
         //res.json(results);
         res.status(200).end();
-      });  
+      });
     }
   }
 }

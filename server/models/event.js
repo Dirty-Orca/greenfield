@@ -11,8 +11,8 @@ var add = function(eventObj, callback) {
   ];
 
   var sql = 'INSERT INTO `events` \
-                ( `artists`, `date_time`, `ticket_url`, `venue_id`) \
-                VALUES (?, ?, ?, ?);'
+                ( `id`, `artists`, `date_time`, `ticket_url`, `venue_id`) \
+                VALUES (? ,?, ?, ?, ?);'
 
   db.queryHelper(sql, params, function(results) {
     params = [results.insertId];
