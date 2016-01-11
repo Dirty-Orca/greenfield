@@ -2,7 +2,7 @@ var db = require('./db/index.js');
 
 var add = function(eventObj, callback) {
   var dt = new Date(eventObj.date_time);
-  
+
   var params = [
     eventObj.id,
     eventObj.artists,
@@ -15,22 +15,30 @@ var add = function(eventObj, callback) {
                 ( `id`, `artists`, `date_time`, `ticket_url`, `venue_id`) \
                 VALUES (? ,?, ?, ?, ?);'
 
-  db.queryHelper(sql, params, function(results) {
-    params = [results.insertId];
-    sql = 'select * from events where events.id = ?;'
-    db.queryHelper(sql, params, function(results) {
-      //return inserted record
-      callback(results[0]);
-    });
+  db.queryHelper(sql, params, function(err, results) {
+    if (err) {
+      callback(err);
+    } else {
+      params = [results.insertId];
+      sql = 'select * from events where events.id = ?;'
+      db.queryHelper(sql, params, function(err, results) {
+        if (err) {
+          callback(err);
+        } else {
+          //return inserted record
+          callback(null, results[0]);
+        }
+      });
+    }
   });
 }
 
 var remove = function(id, callback) {
   var params = [id];
   var sql = 'DELETE FROM `events` where id = (?);'
-  
-  db.queryHelper(sql, params, function(results) {
-    callback(results[0]);
+
+  db.queryHelper(sql, params, function(err, results) {
+    callback(null, results[0]);
   });
 }
 

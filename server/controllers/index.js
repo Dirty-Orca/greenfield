@@ -25,23 +25,35 @@ module.exports = {
     post: function(req, res) {
       var userName = req.body.name;
 
-      user.add(userName, function(results) {
-        res.status(201).json(results);
+      user.add(userName, function(err, results) {
+        if (err) {
+          res.status(err.statusCode || 500).json(err);
+        } else {
+          res.status(201).json(results);
+        }
       });
     }
   },
 
   event: {
     post: function(req, res) {
-      event.add(req.body, function(results) {
-        res.status(201).json(results);
+      event.add(req.body, function(err, results) {
+        if (err) {
+          res.status(err.statusCode || 500).json(err);
+        } else {
+          res.status(201).json(results);
+        }
       });
     }
   },
   venue: {
     post: function(req, res) {
-      venue.add(req.body, function(results) {
-        res.status(201).json(results);
+      venue.add(req.body, function(err, results) {
+        if (err) {
+          res.status(err.statusCode || 500).json(err);
+        } else {
+          res.status(201).json(results);
+        }
       });
     }
   },
@@ -49,24 +61,36 @@ module.exports = {
   userEvents: {
     get: function(req, res) {
       var userId = req.params.id;
-      userEvents.get(userId, function(results) {
-        res.json(results);
+      userEvents.get(userId, function(err, results) {
+        if (err) {
+          res.status(err.statusCode || 500).json(err);
+        } else {
+          res.json(results);
+        }
       });
     },
 
     post: function(req, res) {
       var userId = req.body.user_id;
       var eventId = req.body.event_id;
-      userEvents.add(userId, eventId, function(results) {
-        res.status(201).json(results);
+      userEvents.add(userId, eventId, function(err, results) {
+        if (err) {
+          res.status(err.statusCode || 500).json(err);
+        } else {
+          res.status(201).json(results);
+        }
       });
     },
 
     delete: function(req, res) {
       var userId = req.body.user_id;
       var eventId = req.body.event_id;
-      userEvents.remove(userId, eventId, function(results) {
-        res.status(204).json(results);
+      userEvents.remove(userId, eventId, function(err, results) {
+        if (err) {
+          res.status(err.statusCode || 500).json(err);
+        } else {
+          res.status(204).json(results);
+        }
       });
     }
   }
