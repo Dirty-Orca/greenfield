@@ -35,7 +35,6 @@ var reArrange = function(body) {
   body = JSON.parse(body);
 
   for (var i = 0; i < body.length; i++) {
-    console.log("this is the body i", body[i]);
     if (!newBody[body[i].venue.id]) {
       newBody[body[i].venue.id] = body[i].venue;
       newBody[body[i].venue.id].events = [];
@@ -56,16 +55,15 @@ var reArrange = function(body) {
 };
 
 module.exports = function(data, callback) {
-  console.log('this is the url: http://api.bandsintown.com/events/search?location=' + data.city + ',' + data.state + '&radius=10&format=json&date=' + data.fromDate + ',' + data.toDate + '(inclusive range)&app_id=mapit');
   request('http://api.bandsintown.com/events/search?location=' + data.city + ',' + data.state + '&radius=10&format=json&date=' + data.fromDate + ',' + data.toDate + '(inclusive range)&app_id=mapit', function(error, response, body) {
     if (error) {
-      throw error;
+
+      console.log(error);
+      console.log('error');
     }
 
     if (!error && response.statusCode == 200) {
       var newBody = reArrange(body);
-      //resp.send(newBody);
-      console.log('hello');
       callback(newBody);
     }
   })
