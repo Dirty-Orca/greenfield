@@ -21,7 +21,6 @@ after(function() {
 
 describe("Greenfield - Server - REST API Routes", function() {
 
-
   describe('/api/user', function() {
 
     describe('POST', function() {
@@ -134,40 +133,42 @@ describe("Greenfield - Server - REST API Routes", function() {
           .expect(201, done);
       });
     });
-  });
 
-  describe('GET', function() {
 
-    it('responds with a 200 (OK) and the json data for the events for this user', function(done) {
 
-      request(app)
-        .get('/api/userEvents/' + newUserId)
-        .expect(function(res) {
-          var events = res.body;
-          expect(events[0].id).to.exist;
-          expect(events[0].artists).to.equal('new event artists');
-          expect(events[0].date_time).to.equal('2016-09-28T07:00:00.000Z');
-          expect(events[0].ticket_url).to.equal('http://www.eventbrite.com');
-          expect(events[0].venue_id).to.equal(55);
-          expect(events[0].name).to.equal('new venue');
-        })
-        .expect(200, done);
+    describe('GET', function() {
+
+      it('responds with a 200 (OK) and the json data for the events for this user', function(done) {
+
+        request(app)
+          .get('/api/userEvents/' + newUserId)
+          .expect(function(res) {
+            var events = res.body;
+            expect(events[0].id).to.exist;
+            expect(events[0].artists).to.equal('new event artists');
+            expect(events[0].date_time).to.equal('2016-09-28T07:00:00.000Z');
+            expect(events[0].ticket_url).to.equal('http://www.eventbrite.com');
+            expect(events[0].venue_id).to.equal(55);
+            expect(events[0].name).to.equal('new venue');
+          })
+          .expect(200, done);
+      });
     });
-  });
 
-  describe('DELETE', function() {
+    describe('DELETE', function() {
 
-    it('responds with a 204 (Deleted)', function(done) {
+      it('responds with a 204 (Deleted)', function(done) {
 
-      var userEvent = {
-        user_id: newUserId,
-        event_id: 14
-      };
+        var userEvent = {
+          user_id: newUserId,
+          event_id: 14
+        };
 
-      request(app)
-        .delete('/api/userEvents')
-        .send(userEvent)
-        .expect(204, done);
+        request(app)
+          .delete('/api/userEvents')
+          .send(userEvent)
+          .expect(204, done);
+      });
     });
   });
 
@@ -178,10 +179,10 @@ describe("Greenfield - Server - REST API Routes", function() {
       it('responds with a 200 (OK) and the json data for the search results', function(done) {
 
         var searchParams = {
-          city:'San Francisco',
-          state:'CA',
-          fromDate:'2016-01-12',
-          toDate:'2016-01-13'
+          city: 'San Francisco',
+          state: 'CA',
+          fromDate: '2016-01-12',
+          toDate: '2016-01-13'
         };
 
         request(app)

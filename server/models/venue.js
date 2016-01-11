@@ -1,6 +1,27 @@
 var db = require('./db/index.js');
 
 var add = function(venueObj, callback) {
+  //check if venue is in db
+  check(venueObj, addVenue, callback);
+}
+
+var check = function(venueObj, addCallback, callback) {
+  var params = [venueObj.id];
+  var sql = 'SELECT * FROM `venues` WHERE id = ?';
+  db.queryHelper(sql, params, function(err, results) {
+    if (err) {
+      callback(err);
+    } else {
+      if (results.length > 0) {
+        callback(null, results[0]);
+      } else {
+        addCallback(venueObj, callback);
+      }
+    }
+  });
+}
+
+var addVenue = function(venueObj, callback) {
 
   var params = [
     venueObj.id,
