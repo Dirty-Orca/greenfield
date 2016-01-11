@@ -2,7 +2,6 @@
 .map {
   position:absolute;
   top:125px;
-  bottom:75px;
   left: 25%;
   width:50%;
 }
@@ -16,7 +15,11 @@
   margin-top: 20px;
   border:2px solid black;
 }
-
+.event ul {
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+}
 .custom-popup .leaflet-popup-content-wrapper {
   background:#2c3e50;
   color:#fff;

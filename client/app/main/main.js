@@ -56,6 +56,7 @@ angular.module('greenfield.main', ['leaflet-directive'])
       var id = args.leafletEvent.target.options.id
       $scope.data.showMarker = $scope.markers[id].events;
       $scope.reveal = true;
+      console.log($scope.data.showMarker[0])
     });
 
 
