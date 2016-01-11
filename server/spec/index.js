@@ -9,11 +9,11 @@ var newUserId;
 
 after(function() {
   // runs after all tests in this block
-  
+
   // db.queryHelper("truncate `events`; tuncate `users`; truncate `venues`;", [], function() {
   //   return;
   // });
-  
+
   // note: i cannot get these queries above to work for some reason, 
   // run the script below manually to clear data
   // delete from `users_events`; delete from `users`; delete from `events`; delete from `venues`;
@@ -136,45 +136,63 @@ describe("Greenfield - Server - REST API Routes", function() {
     });
   });
 
-  describe('/userEvents', function() {
+  describe('GET', function() {
 
-    describe('GET', function() {
+    it('responds with a 200 (OK) and the json data for the events for this user', function(done) {
 
-      it('responds with a 200 (OK) and the json data for the events for this user', function(done) {
+      request(app)
+        .get('/api/userEvents/' + newUserId)
+        .expect(function(res) {
+          var events = res.body;
+          expect(events[0].id).to.exist;
+          expect(events[0].artists).to.equal('new event artists');
+          expect(events[0].date_time).to.equal('2016-09-28T07:00:00.000Z');
+          expect(events[0].ticket_url).to.equal('http://www.eventbrite.com');
+          expect(events[0].venue_id).to.equal(55);
+          expect(events[0].name).to.equal('new venue');
+        })
+        .expect(200, done);
+    });
+  });
+
+  describe('DELETE', function() {
+
+    it('responds with a 204 (Deleted)', function(done) {
+
+      var userEvent = {
+        user_id: newUserId,
+        event_id: 14
+      };
+
+      request(app)
+        .delete('/api/userEvents')
+        .send(userEvent)
+        .expect(204, done);
+    });
+  });
+
+  describe('/search', function() {
+
+    describe('POST', function() {
+
+      it('responds with a 200 (OK) and the json data for the search results', function(done) {
+
+        var searchParams = {
+          city:'San Francisco',
+          state:'CA',
+          fromDate:'2016-01-12',
+          toDate:'2016-01-13'
+        };
 
         request(app)
-          .get('/api/userEvents/'+newUserId)
+          .post('/api/search')
+          .send(searchParams)
           .expect(function(res) {
-            var events = res.body;
-            expect(events[0].id).to.exist;
-            expect(events[0].artists).to.equal('new event artists');
-            expect(events[0].date_time).to.equal('2016-09-28T07:00:00.000Z');
-            expect(events[0].ticket_url).to.equal('http://www.eventbrite.com');
-            expect(events[0].venue_id).to.equal(55);
-            expect(events[0].name).to.equal('new venue');
+            expect(res.body).to.exist;
+            expect(Array.isArray(res.body)).to.equal(true);
           })
           .expect(200, done);
       });
     });
   });
-
-  describe('/userEvents', function() {
-
-    describe('DELETE', function() {
-
-      it('responds with a 204 (Deleted)', function(done) {
-
-        var userEvent = {
-          user_id: newUserId,
-          event_id: 14
-        };
-
-        request(app)
-          .delete('/api/userEvents')
-          .send(userEvent)
-          .expect(204, done);
-      });
-    });
-  });
-
 });
