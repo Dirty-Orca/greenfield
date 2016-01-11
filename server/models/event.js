@@ -41,7 +41,7 @@ var addEvent = function(eventObj, callback) {
     if (err) {
       callback(err);
     } else {
-      params = [results.insertId];
+      params = [eventObj.id];
       sql = 'select * from events where events.id = ?;'
       db.queryHelper(sql, params, function(err, results) {
         if (err) {
