@@ -2,7 +2,27 @@ angular.module('greenfield.services', [])
 
 .factory('main', function($http, $log, $location) {
 
+  var venueRequest = function(obj) {
+    return $http({
+      method: 'POST',
+      url: '/api/venue',
+      data: obj
+    })
+  }
 
+  var eventRequest = function(obj) {
+    return $http({
+      method: 'POST',
+      url: '/api/event',
+      data: obj
+    }).then(function(resp) {
+      return $http({
+        method: 'POST',
+        url: '/api/userEvents',
+        data: obj
+      })
+    })
+  }
 
   var mapRequest = function(obj) {
     return $http({
@@ -10,7 +30,6 @@ angular.module('greenfield.services', [])
       url: '/api/search',
       data: obj
     }).then(function(resp) {
-
       $location.path('/').search({
         mapData: resp
       })
