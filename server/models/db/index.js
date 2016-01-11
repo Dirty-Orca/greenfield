@@ -8,7 +8,8 @@ var connection = mysql.createConnection({
 });
 
 connection.connect({
-  debug: true
+  debug: true,
+  multipleStatements: true
 }, function(err) {
   if (err) throw (err);
 });
@@ -16,9 +17,9 @@ connection.connect({
 var queryHelper = function(sql, params, callback) {
   connection.query(sql, params, function(err, results) {
     if (err) {
+      console.log(err);
       throw (err);
     }
-
     callback(results);
   });
 }
