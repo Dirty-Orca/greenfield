@@ -28,7 +28,7 @@
         <div class = 'name'> {{event.artists[0]['name']}}</div>
         <div class = 'date'> Time:  {{event['datetime']}}</div>
         <div class = 'date'> <a href = "{{event['url']}}">More Info</a></div>
-        <input class = 'add' type = "submit" value = "add" ng-click = "eventRequest(event['index'])"/>
+        <input class = 'add' type = "submit" value = "add" ng-click = "addEvent(event)"/>
 
       </div>
     </div>

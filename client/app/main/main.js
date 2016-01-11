@@ -16,7 +16,9 @@ angular.module('greenfield.main', ['leaflet-directive'])
       main.searchItem(stuff);
     }
 
-
+    $scope.addEvent = function (event) {
+      main.eventRequest(event);
+    }
 
     //set data to bandsintown content
     var data = $location.search();
@@ -74,10 +76,12 @@ angular.module('greenfield.main', ['leaflet-directive'])
     //displays event information when marker is clicked
     $scope.$on('leafletDirectiveMarker.click', function(e, args) {
       // references data by id in args
-      var id = args.leafletEvent.target.options.id
+      var id = args.leafletEvent.target.options.id;
+      var venue = $scope.markers[id];
+      main.venueRequest(venue);
       $scope.data.showMarker = $scope.markers[id].events;
       $scope.reveal = true;
-      console.log($scope.data.showMarker[0])
+      // console.log($scope.data.showMarker[0])
     });
 
 
