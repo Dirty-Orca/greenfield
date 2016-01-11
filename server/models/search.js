@@ -40,6 +40,7 @@ var reArrange = function(body) {
       newBody[body[i].venue.id].events = [];
     }
     newBody[body[i].venue.id].events.push({
+      index: newBody[body[i].venue.id].events.length,
       b_event_id: body[i].id,
       url: body[i].url,
       datetime: body[i].datetime,
