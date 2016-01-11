@@ -5,7 +5,14 @@ angular.module('greenfield.services', [])
 
   var venueRequest = function(venue) {
     $log.info(venue);
-    venue_id = venue.id;
+    venue_id = "" + venue.id;
+    id = venue_id;
+    venue.url =  "";
+    venue.city = "";
+    venue.region = "";
+    venue.country = "";
+    venue.latitude = venue.lat;
+    venue.longitude = venue.lng;
     return $http({
       method: 'POST',
       url: '/api/venue',
@@ -16,6 +23,9 @@ angular.module('greenfield.services', [])
   var eventRequest = function(event) {
     event.artists = event.artists[0].name;
     event.venue_id = venue_id;
+    event.date_time = event.datetime;
+    event.ticket_url = event.url;
+    event.id = event.b_event_id.toString();
     $log.info(event);
     return $http({
       method: 'POST',

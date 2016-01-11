@@ -41,6 +41,7 @@ module.exports = {
 
   event: {
     post: function(req, res) {
+    console.log(req.body);
       event.add(req.body, function(err, results) {
         if (err) {
           res.status(err.statusCode || 500).json(err);
