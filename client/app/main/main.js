@@ -1,5 +1,25 @@
 angular.module('greenfield.main', ['leaflet-directive'])
-  .controller('BasicCenterController', ['$scope', '$location', function($scope, $location) {
+  .controller('BasicCenterController', function($scope, $location, $log, main) {
+    $scope.search = {}; //defining the object and properties ahead of time ensures they are in the correct order for the API request
+
+    $scope.search.zip = '';
+
+    $scope.city = '';
+
+    $scope.search.rawFromDate = '';
+
+    $scope.search.rawToDate = '';
+
+    $scope.format = function(stuff) { // when the time comes to pass this stuff to ben, reset this function to contain two inner functions, one that reformats everything, and a second that passes off the data to his function
+      stuff.toDate = "" + stuff.rawToDate.getFullYear() + "-0" + (stuff.rawToDate.getMonth() + 1) + "-" + stuff.rawToDate.getDate();
+      stuff.fromDate = "" + stuff.rawFromDate.getFullYear() + "-0" + (stuff.rawFromDate.getMonth() + 1) + "-" + stuff.rawFromDate.getDate();
+      main.searchItem(stuff);
+    }
+
+    $scope.addEvent = function (event) {
+      main.eventRequest(event);
+    }
+
     //set data to bandsintown content
     var data = $location.search();
     //declare map maprkers
@@ -50,54 +70,20 @@ angular.module('greenfield.main', ['leaflet-directive'])
         }
       }
     });
+
+
+
     //displays event information when marker is clicked
     $scope.$on('leafletDirectiveMarker.click', function(e, args) {
       // references data by id in args
-      var id = args.leafletEvent.target.options.id
+      var id = args.leafletEvent.target.options.id;
+      var venue = $scope.markers[id];
+      main.venueRequest(venue);
       $scope.data.showMarker = $scope.markers[id].events;
       $scope.reveal = true;
-      console.log($scope.data.showMarker[0])
+      // console.log($scope.data.showMarker[0])
     });
 
 
-  }])
 
-
-// .controller('mainController', function($scope, $routeParams, main) {
-//   console.log($routeParams);
-//   //KEY
-//   L.mapbox.accessToken = "pk.eyJ1IjoiYmJhbGFyYW4iLCJhIjoiUmt5TlVjayJ9.1AYg44v3_Bg1XUQ6-5dGAw";
-
-//   //instantiate new map
-//   var map = L.mapbox.map('map', 'mapbox.streets', {
-//     scrollWheelZoom: true
-//   }).setView([38.8929, -77.0252], 14);
-
-//   render point on map
-//   hard-coded json data
-
-
-//   //generates map layer
-//   // var venueLayer = L.mapbox.featureLayer().addTo(map);
-//   // venueLayer.setGeoJSON({
-//   //       "type": "FeatureCollection",
-//   //       "features": [{
-//   //         "type": "Feature",
-//   //         "geometry": {
-//   //           "type": "Point",
-//   //           "coordinates": [mapItems[0].lon, mapItems[0].lat]
-//   //         },
-//   //         "properties": {
-//   //           "title": mapItems[0].name
-//   //         }
-//   //       }]
-//   //     });
-
-//   $scope.message = '';
-
-//   // main.get().then(function(data) {
-//   //   console.log(data.statusText);
-//   //   $scope.message = data.statusText;
-//   // });
-
-// });
+  })
