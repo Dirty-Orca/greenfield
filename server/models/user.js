@@ -27,7 +27,7 @@ var remove = function(id, callback) {
   var sql = 'DELETE FROM `users` where id = (?);'
 
   db.queryHelper(sql, params, function(results) {
-    callback(null, sresults[0]);
+    callback(null, results[0]);
   });
 }
 
