@@ -7,6 +7,9 @@ var db = require('../models/db/index.js');
 
 var newUserId;
 
+var venueId = '353453545345435';
+var eventId = '434242434'
+ 
 after(function() {
   // runs after all tests in this block
 
@@ -54,7 +57,7 @@ describe("Greenfield - Server - REST API Routes", function() {
       it('responds with a 201 (Created) and the json data for the new venue', function(done) {
 
         var newVenue = {
-          id: 55,
+          id: venueId,
           url: 'http://www.venue.com',
           name: 'new venue',
           city: 'San Francisco',
@@ -89,11 +92,11 @@ describe("Greenfield - Server - REST API Routes", function() {
       it('responds with a 201 (Created) and the json data for the new event', function(done) {
 
         var newEvent = {
-          id: 14,
+          id: eventId,
           artists: 'new event artists',
           date_time: '9-28-2016',
           ticket_url: 'http://www.eventbrite.com',
-          venue_id: 55 //FYI - this must already exist in the db
+          venue_id: venueId //FYI - this must already exist in the db
         };
 
         request(app)
@@ -104,7 +107,7 @@ describe("Greenfield - Server - REST API Routes", function() {
             expect(res.body.artists).to.equal('new event artists');
             expect(res.body.date_time).to.equal('2016-09-28T07:00:00.000Z');
             expect(res.body.ticket_url).to.equal('http://www.eventbrite.com');
-            expect(res.body.venue_id).to.equal(55);
+            expect(res.body.venue_id).to.equal(venueId);
           })
           .expect(201, done);
       });
@@ -119,7 +122,7 @@ describe("Greenfield - Server - REST API Routes", function() {
 
         var userEvent = {
           user_id: newUserId,
-          event_id: 14
+          event_id: eventId
         };
 
         request(app)
@@ -128,7 +131,7 @@ describe("Greenfield - Server - REST API Routes", function() {
           .expect(function(res) {
             expect(res.body.id).to.exist;
             expect(res.body.user_id).to.equal(newUserId);
-            expect(res.body.event_id).to.equal(14);
+            expect(res.body.event_id).to.equal(eventId);
           })
           .expect(201, done);
       });
@@ -148,7 +151,7 @@ describe("Greenfield - Server - REST API Routes", function() {
             expect(events[0].artists).to.equal('new event artists');
             expect(events[0].date_time).to.equal('2016-09-28T07:00:00.000Z');
             expect(events[0].ticket_url).to.equal('http://www.eventbrite.com');
-            expect(events[0].venue_id).to.equal(55);
+            expect(events[0].venue_id).to.equal(venueId);
             expect(events[0].name).to.equal('new venue');
           })
           .expect(200, done);
@@ -161,7 +164,7 @@ describe("Greenfield - Server - REST API Routes", function() {
 
         var userEvent = {
           user_id: newUserId,
-          event_id: 14
+          event_id: eventId
         };
 
         request(app)

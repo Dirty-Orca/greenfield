@@ -43,7 +43,7 @@ var addVenue = function(venueObj, callback) {
     if (err) {
       callback(err);
     } else {
-      params = [results.insertId];
+      params = [venueObj.id];
       sql = 'select * from venues where venues.id = ?;'
       db.queryHelper(sql, params, function(err, results) {
         //return inserted record
