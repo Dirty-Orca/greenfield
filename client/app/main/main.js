@@ -48,7 +48,8 @@ angular.module('greenfield.main', ['leaflet-directive'])
     //extend scope to map objects and set defaults
     angular.extend($scope, {
       defaults: {
-        minZoom: 8
+        minZoom: 11,
+        scrollWheelZoom: false
       },
       center: {
         lat: $scope.markers[0].lat,
