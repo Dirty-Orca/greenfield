@@ -25,7 +25,7 @@ angular.module('greenfield.search', [])
         main.mapRequest(stuff);
         //
       })
-    }    }
+    } 
 
 //concat city, state to zip 
 
