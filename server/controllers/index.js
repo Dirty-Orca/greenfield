@@ -16,7 +16,7 @@ module.exports = {
   search: {
     post: function(req, res) {
       search(req.body, function(results) {
-        res.send(results);
+        res.status(200).json(results);
       });
     }
   },
@@ -38,7 +38,6 @@ module.exports = {
       });
     }
   },
-
   venue: {
     post: function(req, res) {
       venue.add(req.body, function(results) {
