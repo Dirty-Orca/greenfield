@@ -33,9 +33,9 @@ var addEvent = function(eventObj, callback) {
   ];
 
   var sql = 'INSERT INTO `events` \
-                ( `id`, `artists`, `date_time`, `ticket_url`, `venue_id`) \
-                VALUES (? ,?, ?, ?, ?);'
-
+                (id, `artists`, `date_time`, `ticket_url`, `venue_id`) \
+                VALUES (?, ?, ?, ?, ?);'
+  
 
   db.queryHelper(sql, params, function(err, results) {
     if (err) {
