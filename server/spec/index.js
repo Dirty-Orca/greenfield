@@ -54,7 +54,7 @@ describe("Greenfield - Server - REST API Routes", function() {
       it('responds with a 201 (Created) and the json data for the new venue', function(done) {
 
         var newVenue = {
-          id: '55',
+          id: 55,
           url: 'http://www.venue.com',
           name: 'new venue',
           city: 'San Francisco',
@@ -89,11 +89,11 @@ describe("Greenfield - Server - REST API Routes", function() {
       it('responds with a 201 (Created) and the json data for the new event', function(done) {
 
         var newEvent = {
-          id: '14',
+          id: 14,
           artists: 'new event artists',
           date_time: '9-28-2016',
           ticket_url: 'http://www.eventbrite.com',
-          venue_id: '55' //FYI - this must already exist in the db
+          venue_id: 55 //FYI - this must already exist in the db
         };
 
         request(app)
