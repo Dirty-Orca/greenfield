@@ -1,13 +1,17 @@
 angular.module('greenfield.services', [])
 
 .factory('main', function($http, $log, $location) {
+  //test user
+  var user_id = 148
+
+
   var venue_id;
 
   var venueRequest = function(venue) {
     $log.info(venue);
     venue_id = "" + venue.id;
     id = venue_id;
-    venue.url =  "";
+    venue.url = "";
     venue.city = "";
     venue.region = "";
     venue.country = "";
@@ -32,10 +36,15 @@ angular.module('greenfield.services', [])
       url: '/api/event',
       data: event
     }).then(function(resp) {
+      console.log(resp.data)
+      var data = {
+        event_id: resp.data.id,
+        user_id: user_id
+      };
       return $http({
         method: 'POST',
         url: '/api/userEvents',
-        data: event
+        data: data
       })
     })
   }
