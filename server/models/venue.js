@@ -18,13 +18,21 @@ var add = function(venueObj, callback) {
               VALUES \
             (?, ?, ?, ?, ?, ?, ?, ?);'
 
-  db.queryHelper(sql, params, function(results) {
-    params = [results.insertId];
-    sql = 'select * from venues where venues.id = ?;'
-    db.queryHelper(sql, params, function(results) {
-      //return inserted record
-      callback(results[0]);
-    });
+  db.queryHelper(sql, params, function(err, results) {
+    if (err) {
+      callback(err);
+    } else {
+      params = [results.insertId];
+      sql = 'select * from venues where venues.id = ?;'
+      db.queryHelper(sql, params, function(err, results) {
+        //return inserted record
+        if (err) {
+          callback(err);
+        } else {
+          callback(null, results[0]);
+        }
+      });
+    }
   });
 }
 
@@ -33,7 +41,7 @@ var remove = function(id, callback) {
   var sql = 'DELETE FROM `venues` where id = (?);'
 
   db.queryHelper(sql, params, function(results) {
-    callback(results[0]);
+    callback(null,results[0]);
   });
 }
 

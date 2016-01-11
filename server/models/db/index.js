@@ -17,10 +17,10 @@ connection.connect({
 var queryHelper = function(sql, params, callback) {
   connection.query(sql, params, function(err, results) {
     if (err) {
-      console.log(err);
-      throw (err);
+      callback(err);
+    } else {
+      callback(null, results);
     }
-    callback(results);
   });
 }
 
