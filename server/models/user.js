@@ -1,7 +1,7 @@
 var db = require('./db/index.js');
 
-var add = function(userName, callback) {
-  var params = [userName];
+var add = function(name, callback) {
+  var params = [name];
   var sql = 'INSERT INTO `users` (`name`) VALUES (?);'
 
   db.queryHelper(sql, params, function(results) {
@@ -14,4 +14,14 @@ var add = function(userName, callback) {
   });
 }
 
+var remove = function(id, callback) {
+  var params = [id];
+  var sql = 'DELETE FROM `users` where id = (?);'
+
+  db.queryHelper(sql, params, function(results) {
+    callback(results[0]);
+  });
+}
+
 module.exports.add = add;
+module.exports.remove = remove;

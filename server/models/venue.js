@@ -28,4 +28,14 @@ var add = function(venueObj, callback) {
   });
 }
 
+var remove = function(id, callback) {
+  var params = [id];
+  var sql = 'DELETE FROM `venues` where id = (?);'
+
+  db.queryHelper(sql, params, function(results) {
+    callback(results[0]);
+  });
+}
+
 module.exports.add = add;
+module.exports.remove = remove;

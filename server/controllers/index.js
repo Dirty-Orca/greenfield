@@ -23,10 +23,10 @@ module.exports = {
 
   user: {
     post: function(req, res) {
-      var userName = req.body.user_name;
+      var userName = req.body.name;
 
       user.add(userName, function(results) {
-        res.json(results);
+        res.status(201).json(results);
       });
     }
   },
@@ -34,7 +34,7 @@ module.exports = {
   event: {
     post: function(req, res) {
       event.add(req.body, function(results) {
-        res.json(results);
+        res.status(201).json(results);
       });
     }
   },
@@ -42,7 +42,7 @@ module.exports = {
   venue: {
     post: function(req, res) {
       venue.add(req.body, function(results) {
-        res.json(results);
+        res.status(201).json(results);
       });
     }
   },
@@ -59,7 +59,7 @@ module.exports = {
       var userId = req.body.user_id;
       var eventId = req.body.event_id;
       userEvents.add(userId, eventId, function(results) {
-        res.json(results);
+        res.status(201).json(results);
       });
     },
 
@@ -67,8 +67,7 @@ module.exports = {
       var userId = req.body.user_id;
       var eventId = req.body.event_id;
       userEvents.remove(userId, eventId, function(results) {
-        //res.json(results);
-        res.status(200).end();
+        res.status(204).json(results);
       });
     }
   }

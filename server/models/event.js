@@ -1,11 +1,12 @@
 var db = require('./db/index.js');
 
 var add = function(eventObj, callback) {
-
+  var dt = new Date(eventObj.date_time);
+  
   var params = [
     eventObj.id,
     eventObj.artists,
-    eventObj.date_time,
+    dt,
     eventObj.ticket_url,
     eventObj.venue_id
   ];
@@ -24,4 +25,15 @@ var add = function(eventObj, callback) {
   });
 }
 
+var remove = function(id, callback) {
+  var params = [id];
+  var sql = 'DELETE FROM `events` where id = (?);'
+  
+  db.queryHelper(sql, params, function(results) {
+    callback(results[0]);
+  });
+}
+
+
 module.exports.add = add;
+module.exports.remove = remove;
