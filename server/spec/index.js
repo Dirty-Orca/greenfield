@@ -181,8 +181,8 @@ describe("Greenfield - Server - REST API Routes", function() {
         var searchParams = {
           city: 'San Francisco',
           state: 'CA',
-          fromDate: '2016-01-12',
-          toDate: '2016-01-13'
+          fromDate: '2016-01-29',
+          toDate: '2016-01-30'
         };
 
         request(app)

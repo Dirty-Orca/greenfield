@@ -56,14 +56,17 @@ var reArrange = function(body) {
 };
 
 module.exports = function(data, callback) {
-  request('http://api.bandsintown.com/events/search?location=' + data.city + ',' + data.state + '&radius=10&format=json&date=' + data.fromDate + ',' + data.toDate + '(inclusive range)&app_id=mapit', function(error, response, body) {
-    if (error) {
-      console.log(error);
+  request('http://api.bandsintown.com/events/search?location=' + data.city + ',' + data.state + '&radius=10&format=json&date=' + data.fromDate + ',' + data.toDate + '(inclusive range)&app_id=mapit', function(err, res, body) {
+    if (err) {
+      callback(err)
+    } else {
+      try {
+        //catch any parsing errors
+        var newBody = reArrange(body);
+        callback(null, newBody);
+      } catch (err) {
+        callback(err);
+      }
     }
-
-    if (!error && response.statusCode == 200) {
-      var newBody = reArrange(body);
-      callback(newBody);
-    }
-  })
+  });
 }

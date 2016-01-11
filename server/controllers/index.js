@@ -15,8 +15,12 @@ module.exports = {
 
   search: {
     post: function(req, res) {
-      search(req.body, function(results) {
-        res.status(200).json(results);
+      search(req.body, function(err, results) {
+        if (err) {
+          res.status(err.statusCode || 500).json(err);
+        } else {
+          res.status(200).json(results);
+        }
       });
     }
   },
