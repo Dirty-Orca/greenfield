@@ -10,6 +10,10 @@ angular.module('greenfield', [
   .config(function($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
+        templateUrl: 'app/search/search.html',
+        controller: 'BasicCenterController'  
+      })
+      .when('/main', {
         templateUrl: 'app/main/main.html',
         controller: 'BasicCenterController'  
       })

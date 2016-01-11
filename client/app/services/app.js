@@ -1,9 +1,11 @@
 angular.module('greenfield.services', [])
 
 .factory('main', function($http, $log, $location) {
+  var venue_id;
 
   var venueRequest = function(venue) {
     $log.info(venue);
+    venue_id = venue.id;
     return $http({
       method: 'POST',
       url: '/api/venue',
@@ -12,6 +14,8 @@ angular.module('greenfield.services', [])
   }
 
   var eventRequest = function(event) {
+    event.artists = event.artists[0].name;
+    event.venue_id = venue_id;
     $log.info(event);
     return $http({
       method: 'POST',
@@ -32,7 +36,7 @@ angular.module('greenfield.services', [])
       url: '/api/search',
       data: obj
     }).then(function(resp) {
-      $location.path('/').search({
+      $location.path('/main').search({
         mapData: resp
       })
     })
