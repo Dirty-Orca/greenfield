@@ -1,7 +1,5 @@
-# greenfield
-
 # Mission
-Finding and aggregating concerts that you’re interested in has always been a challenge. This core problem brought rise to Greenfield Project, a project dedicated to bringing ease and convenience to your concert planning experience. 
+Finding and aggregating concerts that you’re interested in has always been a challenge. This core problem brought rise to our greenfield Project, a project dedicated to bringing ease and convenience to your concert planning experience. 
 
 # How It Works
 Our core functionality prides itself in its simplicity: tell us your location and a date range, and we’ll show you a beautiful map with venues and their corresponding events. 
@@ -19,7 +17,7 @@ For our thorough concert data, we tapped into the BandsInTown API, which provide
 
 “Greenfield Project really makes it so easy for me to find out what’s poppin in my area and check out my events whenever I want!” says avid user Avicii. 
 
-“Everyone on our development team is a music fanatic, and so this product really hits home. We can’t wait for the public to enjoy our platform,” says database engineer Rob. 
+“Everyone on our development team is a music fanatic, and so this product really hits home. We can’t wait for the public to enjoy our platform,” says database engineer and scrum master Rob. 
 
 # Check us out!
 Finding and aggregating concerts that you’re interested in has never been easier! Check us out, and please let us know if you have any suggestions for added features. 
