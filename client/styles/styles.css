@@ -5,6 +5,16 @@ body {
   margin: 0px;
 }
 
+body {
+ background-image: url('splash.jpg');
+ background-repeat: no-repeat;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+ background-attachment: fixed;
+}
+
 form {
   padding: 5px;
 }
@@ -26,7 +36,9 @@ input {
 }
 
 #searchPage {
-  text-align: right;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 125px; 
   color: white;
   text-shadow:
    -1px -1px 0 #000,  
@@ -86,6 +98,10 @@ li a:hover {
      1px 1px 0 #000;
 }
 
+#mapEvent{
+  min-height: 50px;
+}
+
 .eventbox a {
   color: pink;
   text-shadow:
@@ -120,7 +136,7 @@ li a:hover {
 
 .btn {
  color: #ffffff;
- background-color: #065287;
+ background-color: #000000;
  border-radius: 5px;
  border-width: 1px;
  margin: 5px;
