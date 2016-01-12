@@ -11,7 +11,7 @@ angular.module('greenfield', [
     $routeProvider
       .when('/', {
         templateUrl: 'app/search/search.html',
-        controller: 'BasicCenterController'  
+        controller: 'searchController'  
       })
       .when('/main', {
         templateUrl: 'app/main/main.html',
