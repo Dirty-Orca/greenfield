@@ -191,3 +191,18 @@ Here is a sample request:
 Sample response: 
 
 Status Code: 204
+
+# Project Setup
+
+```
+npm install
+cd client
+bower install``
+
+create mysql database named "greenfield"
+run server/data/greenfield-schema.sql
+
+update server/models/db/index.js with db connect info
+
+npm test
+
