@@ -205,5 +205,9 @@ run server/data/greenfield-schema.sql
 
 update server/models/db/index.js with db connect info
 
-`npm test`
+running the tests: `npm test`
+
+starting the web server: `nodemon`
+
+http://localhost:3000/#/search
 
