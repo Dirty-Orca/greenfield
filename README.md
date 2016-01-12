@@ -197,12 +197,13 @@ Status Code: 204
 ```
 npm install
 cd client
-bower install``
+bower install
+```
 
 create mysql database named "greenfield"
 run server/data/greenfield-schema.sql
 
 update server/models/db/index.js with db connect info
 
-npm test
+`npm test`
 
