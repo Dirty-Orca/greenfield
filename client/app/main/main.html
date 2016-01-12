@@ -1,5 +1,12 @@
 <div id='container'>
-    <div id = "navBar"><a href="#/">Main</a>    <a href="#/search">Search</a>    <a href="#/userEvents">My Events</a></div>    <a href="#/login">Login/Logout<a/>
+    <div id = "navBar">
+    <ul>
+      <li><a href="#/">Main</a></li>   
+      <li><a href="#/search">Search</a></li>      
+      <li><a href="#/userEvents">My Events</a></li>   
+      <li><a href="#/login">Login/Logout<a/></li>   
+    </ul>   
+  </div>
   <form novalidate name = "inputForm"><!--removes native form validation-->
     <label for = "zip">Zipcode:</label> <!--making a label using the id allows users to switch control to the input by clicking zip:-->
       <input type = "text" class = "formInput" id = "zip" ng-model = "search.zip" required name = "zip" ng-minlength = 5 ng-maxlength = 5 />
