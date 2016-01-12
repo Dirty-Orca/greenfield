@@ -209,5 +209,5 @@ running the tests: `npm test`
 
 starting the web server: `nodemon`
 
-http://localhost:3000/#/search
+point browser to: `http://localhost:3000/#/search`
 
