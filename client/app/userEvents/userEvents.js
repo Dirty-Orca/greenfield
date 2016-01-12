@@ -10,14 +10,14 @@ angular.module('greenfield.userEvents', [])
     id: 148
   };
 
-  // $http({
-  //   type: 'GET',
-  //   url: '/api/userEvents/' + $scope.user.id
+  $http({
+    type: 'GET',
+    url: '/api/userEvents/' + $scope.user.id
 
-  // }).success(function(events){
-  //   $log.info(events);
-  //   $scope.user.events = events;
-  // })
+  }).success(function(events){
+    $log.info(events);
+    $scope.user.events = events;
+  })
 
   $scope.user.events = [{
     name: "The Crazy Donkey", //double check that the name field will be the venue name
