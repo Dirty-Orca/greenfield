@@ -120,13 +120,13 @@ li a:hover {
 
 .btn {
  color: #ffffff;
- background-color: #2980b9;
+ background-color: #065287;
  border-radius: 5px;
  border-width: 1px;
- margin: 5px
- font-size: 20px;
+ margin: 5px;
+ font-size: 15px;
 }
 
 .btn:hover {
-  
+  background-color: #2980b9;
 }
