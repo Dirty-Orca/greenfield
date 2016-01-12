@@ -1,25 +1,193 @@
-# Mission
-Finding and aggregating concerts that you’re interested in has always been a challenge. This core problem brought rise to our greenfield Project, a project dedicated to bringing ease and convenience to your concert planning experience. 
+# Greenfield API Documentation
 
-# How It Works
-Our core functionality prides itself in its simplicity: tell us your location and a date range, and we’ll show you a beautiful map with venues and their corresponding events. 
+Our Greenfield API allows you to perform all the operations required to interact with our web client. The API utilizes REST principles to ensure clear and predictable paths that make writing applications straightforward. 
 
-Every venue that populates on the map is clickable, so that you can get detailed information about events and the respective artists that will be performing. 
+# HTTP Methods
 
-Feel free to click “Add an Event” or “Delete an Event” and we’ll update your events list for you. 
+We use the following HTTP verbs for actions: 
 
-# How We Did It
-Our hardworking team of four put this web application together using the MEAN Stack. 
+GET - Used for retrieving data
+POST - Used for adding data and performing associated actions
+DELETE - Used for deleting data and performing associated actions
 
-For our beautiful map views, we utilized an open-source mapping platform called MapBox that allows us to integrate location queries with custom map design. 
+# Response Format
 
-For our thorough concert data, we tapped into the BandsInTown API, which provides us with artists, bands, call-to-action links, and more. 
 
-“Greenfield Project really makes it so easy for me to find out what’s poppin in my area and check out my events whenever I want!” says avid user Avicii. 
+Responses will be in JSON format. 
 
-“Everyone on our development team is a music fanatic, and so this product really hits home. We can’t wait for the public to enjoy our platform,” says database engineer and scrum master Rob. 
+Our status codes will be one of the following: 
+  200: ok
+  201: created/updated
+  204: deleted
+  400: bad request
+  401: unauthorized
+  404: url not found
+  500: internal error
 
-# Check us out!
-Finding and aggregating concerts that you’re interested in has never been easier! Check us out, and please let us know if you have any suggestions for added features. 
 
-Rock on!
+# User
+
+Request Type: POST
+
+This request will include the following params: 
+  name: ‘STRING’
+
+Here is an example request: 
+
+{
+name: ‘Test name’, 
+}
+
+Sample response: 
+
+Status Code: 201
+
+Search
+
+Request TYPE: POST
+
+This request will include the following params: 
+  city: ‘STRING’, 
+  state: ‘STRING’, 
+  fromDate: ‘STRING’, 
+  toDate: ‘STRING’
+
+Here is an example request: 
+
+{
+city: ‘Los Angeles’, 
+state: ‘CA’, 
+fromDate: ‘2016-01-12’, 
+toDate: ‘2016-01-13’
+}
+
+
+*fromDate and toDate need to be dates in the future, and must follow chronological order. 
+
+Sample response: 
+
+Status Code: 201
+
+# Venue
+
+Request TYPE: POST
+
+This request will include the following params: 
+  id: ‘STRING’, 
+  url: ‘STRING’, 
+  name: ‘STRING’, 
+  city: ‘STRING’, 
+  region: ‘STRING’, 
+  country: ‘STRING’, 
+  latitude: ‘STRING’, 
+  longitude: ‘STRING’
+
+*fromDate and toDate need to be dates in the future, and must follow chronological order. 
+
+Here is an example request: 
+
+{
+id: '55',
+url: 'http://www.venue.com',
+name: 'new venue',
+city: 'San Francisco',
+region: 'CA',
+country: 'USA',
+latitude: '43434.32',
+longitude: '4343434.232'
+}
+
+Sample response: 
+
+Status Code: 201
+
+Event
+
+Request TYPE: POST
+
+This request will include the following params: 
+  id: ‘STRING’, 
+  artists: ‘ARRAY OF STRINGS’, 
+  date-time: ‘STRING’, 
+  ticket-url: ‘STRING’, 
+  venue-id: ‘STRING’
+
+*Venue-ID must already exist in the database. 
+
+Here is an example request: 
+
+{
+id: '14',
+artists: 'http://www.venue.com',
+date-time: ‘9-28-2016’, 
+ticket_url: ‘http://www.eventbrite.com’, 
+venue_id: ‘55’
+}
+
+Sample response: 
+
+Status Code: 201
+
+# User Events
+
+Request TYPE: POST
+
+This request will include the following params: 
+  user_id: ‘STRING’, 
+  event_id: ‘STRING’
+
+Here is an example request: 
+
+{
+user_id: '14', 
+event_id: '20'
+}
+
+Sample response: 
+
+Status Code: 201
+
+Request TYPE: GET
+
+No params for get request. 
+
+Sample response: 
+
+The response will contain an array of objects. Each object represents an event. 
+[
+  {
+    id: 5, 
+    artists: [‘Test’, ‘Test2’, ‘Test3’], 
+    date-time: ‘2016-09-28T07:00:00.000Z’, 
+    ticket-url: ‘http://www.eventbrite.com’, 
+    venue_id: '55', 
+    name: ‘venue’
+  }, 
+  {
+    id: 5, 
+    artists: [‘Test’, ‘Test2’, ‘Test3’], 
+    date-time: ‘2016-09-28T07:00:00.000Z’, 
+    ticket-url: ‘http://www.eventbrite.com’, 
+    venue_id: '55', 
+    name: ‘venue’
+  }
+]
+
+Status Code: 200
+
+Request TYPE: DELETE
+
+Request params: 
+  user_id: ‘INTEGER’, 
+  ‘event_id: ‘INTEGER’
+
+Here is a sample request: 
+
+{
+  user_id: '55', 
+  event_id: '14'
+}
+
+Sample response: 
+
+Status Code: 204
