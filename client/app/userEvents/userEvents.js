@@ -19,25 +19,5 @@ angular.module('greenfield.userEvents', [])
     $scope.user.events = events;
   })
 
-  $scope.user.events = [{
-    name: "The Crazy Donkey", //double check that the name field will be the venue name
-    date_time: new Date(),
-    ticket_url: "https://www.ticketfly.com",
-    id: 1,
-    Artist: "William Mayes"
-  }, {
-    name: "The Cray Donkey",
-    date_time: new Date(),
-    ticket_url: "https://www.ticketfly.com",
-    id: 1,
-    Artist: "William Mayes"
-  }, {
-    name: "The Crazy Donk",
-    date_time: new Date(),
-    ticket_url: "https://www.ticketfly.com",
-    id: 1,
-    Artist: "William Mayes"
-  }]
-
 
 });
